@@ -86,3 +86,48 @@ img {
 .fade {
     animation: fadeOutIn 2s; /* 延长动画时间到2秒 */
 }
+
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* 背景半透明 */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+    border-radius: 10px;
+    animation: modalFadeIn 0.5s; /* 弹窗动画 */
+}
+
+.modal-content .close {
+    font-size: 2em; /* 增大取消按钮的字体大小 */
+    color: #aaa;
+    float: right;
+    cursor: pointer;
+}
+
+.modal-content .close:hover,
+.modal-content .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
