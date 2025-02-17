@@ -64,6 +64,19 @@ button:hover {
     padding: 1em;
 }
 
+#resetButton {
+    background-color: #007AFF;
+    color: white;
+    border: none;
+    padding: 1em;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    white-space: nowrap;
+    display: none; /* 默认隐藏 */
+    margin-top: 1em;
+}
+
 img {
     display: block;
     margin: 0 auto;

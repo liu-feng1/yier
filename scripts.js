@@ -9,7 +9,7 @@ const questions = [
 
 let currentQuestionIndex = 0;
 
-function showModal(message) {
+function showModal(message, disableOverlayClose = false) {
     const modal = document.getElementById('myModal');
     const modalContent = modal.querySelector('.modal-content p');
     modalContent.textContent = message;
@@ -20,11 +20,13 @@ function showModal(message) {
         modal.style.display = 'none';
     };
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
-    };
+    if (!disableOverlayClose) {
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+    }
 }
 
 function throttle(func, wait) {
@@ -43,6 +45,7 @@ document.getElementById('agreeButton').addEventListener('click', throttle(functi
     let disagreeButton = document.getElementById('disagreeButton');
     let questionImage = document.getElementById('questionImage');
     let questionText = document.querySelector('main p');
+    let resetButton = document.getElementById('resetButton');
     agreeButton.style.transform = 'scale(1)';
     disagreeButton.style.marginLeft = '0';
 
@@ -52,15 +55,20 @@ document.getElementById('agreeButton').addEventListener('click', throttle(functi
     setTimeout(() => {
         currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
         if (currentQuestionIndex === 0) {
-            showModal('通过考验，奖励亲亲一个😙');
+            showModal('通过考验，奖励亲亲一个😙', true);
+            agreeButton.style.display = 'none';
+            disagreeButton.style.display = 'none';
+            resetButton.style.display = 'block';
+            questionText.textContent = '啊哒哒啊哒哒';
+        } else {
+            questionText.textContent = questions[currentQuestionIndex];
+            questionImage.src = 'assets/normal.jpeg';
+            questionText.classList.remove('fade');
         }
-        questionText.textContent = questions[currentQuestionIndex];
-        questionImage.src = 'assets/normal.jpeg';
-        questionText.classList.remove('fade');
     }, 1000); // 更新为1秒，以适应2秒的动画时间
 }, 2000)); // 节流2秒
 
-document.getElementById('disagreeButton').addEventListener('click', throttle(function() {
+document.getElementById('disagreeButton').addEventListener('click', function() {
     let agreeButton = document.getElementById('agreeButton');
     let disagreeButton = document.getElementById('disagreeButton');
     let questionImage = document.getElementById('questionImage');
@@ -68,4 +76,18 @@ document.getElementById('disagreeButton').addEventListener('click', throttle(fun
     agreeButton.style.transform = `scale(${currentScale + 0.1})`;
     disagreeButton.style.marginLeft = `${(currentScale + 0.1) * 5}%`;
     questionImage.src = 'assets/disagree.jpeg';
-}, 2000)); // 节流2秒
+});
+
+document.getElementById('resetButton').addEventListener('click', function() {
+    let agreeButton = document.getElementById('agreeButton');
+    let disagreeButton = document.getElementById('disagreeButton');
+    let questionImage = document.getElementById('questionImage');
+    let questionText = document.querySelector('main p');
+    let resetButton = document.getElementById('resetButton');
+    currentQuestionIndex = 0;
+    questionText.textContent = questions[currentQuestionIndex];
+    questionImage.src = 'assets/normal.jpeg'; // 重置图片为 normal.jpeg
+    agreeButton.style.display = 'block';
+    disagreeButton.style.display = 'block';
+    resetButton.style.display = 'none';
+});
