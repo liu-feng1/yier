@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+}
+
+main {
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+}
+
+main p {
+    font-size: 1.5em; /* 增大字体 */
+    color: #333; /* 设置文字颜色 */
+    margin: 1em 0; /* 增加上下间距 */
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1em;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    white-space: nowrap;
+    transition: transform 0.2s, margin 0.2s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#alertButton {
+    background-color: #007AFF;
+    color: white;
+}
+
+#agreeButton {
+    background-color: #34C759;
+    color: white;
+    width: 45%;
+    padding: 1em;
+}
+
+#disagreeButton {
+    background-color: #FF3B30;
+    color: white;
+    width: 45%;
+    padding: 1em;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 2em; /* 增加顶部间距，避免按钮放大时遮挡 */
+}
+
+@keyframes fadeOutIn {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.fade {
+    animation: fadeOutIn 2s; /* 延长动画时间到2秒 */
+}
